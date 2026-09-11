@@ -1,0 +1,15 @@
+# UE build output
+Intermediate/
+Build/
+Saved/
+DerivedDataCache/
+
+# Debug symbols: of no use to a consumer.
+*.pdb
+
+# IDE
+.vs/
+.idea/
+*.sln
+*.suo
+*.user

@@ -1,0 +1,29 @@
+{
+    "BuildId": "27405482",
+    "Modules": {
+        "Hero_1027": "UnrealEditor-Hero_1027.dll",
+        "Hero_1037": "UnrealEditor-Hero_1037.dll",
+        "Hero_1041": "UnrealEditor-Hero_1041.dll",
+        "Hero_1042": "UnrealEditor-Hero_1042.dll",
+        "Hero_1046": "UnrealEditor-Hero_1046.dll",
+        "Hero_1047": "UnrealEditor-Hero_1047.dll",
+        "Hero_1049": "UnrealEditor-Hero_1049.dll",
+        "Hero_1054": "UnrealEditor-Hero_1054.dll",
+        "Hero_1056": "UnrealEditor-Hero_1056.dll",
+        "Hero_1061": "UnrealEditor-Hero_1061.dll",
+        "HeroGAS_1023": "UnrealEditor-HeroGAS_1023.dll",
+        "KawaiiPhysics": "UnrealEditor-KawaiiPhysics.dll",
+        "Marvel": "UnrealEditor-Marvel.dll",
+        "MarvelGameplayCues": "UnrealEditor-MarvelGameplayCues.dll",
+        "MarvelLevel": "UnrealEditor-MarvelLevel.dll",
+        "MarvelRivalsExternalStubs": "UnrealEditor-MarvelRivalsExternalStubs.dll",
+        "MassMonster": "UnrealEditor-MassMonster.dll",
+        "PyAbility_212": "UnrealEditor-PyAbility_212.dll",
+        "PyAbility_223": "UnrealEditor-PyAbility_223.dll",
+        "PyAnimNotifyState_BraodcastDelegate": "UnrealEditor-PyAnimNotifyState_BraodcastDelegate.dll",
+        "PyBigTransportDoor": "UnrealEditor-PyBigTransportDoor.dll",
+        "PyPayloadShowActorBase": "UnrealEditor-PyPayloadShowActorBase.dll",
+        "PySpaceVehicle": "UnrealEditor-PySpaceVehicle.dll",
+        "ShowActorAnimNotify": "UnrealEditor-ShowActorAnimNotify.dll"
+    }
+}
