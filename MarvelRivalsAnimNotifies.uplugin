@@ -65,11 +65,6 @@
             "LoadingPhase": "Default"
         },
         {
-            "Name": "KawaiiPhysics",
-            "Type": "Runtime",
-            "LoadingPhase": "Default"
-        },
-        {
             "Name": "Marvel",
             "Type": "Runtime",
             "LoadingPhase": "Default"
@@ -146,6 +141,12 @@
         {
             "Name": "StructUtils",
             "Enabled": true
+        },
+        {
+            "Name": "KawaiiPhysics",
+            "Enabled": true,
+            "Description": "Provides /Script/KawaiiPhysics, including the two Kawaii Physics anim notifies this pack used to stub.",
+            "MarketplaceURL": "https://github.com/XzantGaming/KawaiiPhysicsRivals"
         }
     ]
 }

@@ -34,7 +34,7 @@ structs and 36 enums their properties need.**
 | `Hero_1027` … `Hero_1061`, `HeroGAS_1023` | per-hero notifies (Wolverine, Angela, Peni Parker, …) |
 | `MassMonster`, `MarvelLevel`, `MarvelGameplayCues` | mode- and level-specific notifies |
 | `PyAbility_212`, `PySpaceVehicle`, … | notifies the game defines in Python |
-| `KawaiiPhysics` | 2 notifies from a plugin you probably don't have — stubbed so you don't need it |
+| `KawaiiPhysics` | 2 notifies that live in a plugin, not the game — supplied by a [required dependency](#the-kawaii-physics-notifies) |
 | `MarvelRivalsExternalStubs` | the few Wwise types the audio notifies reference |
 
 Everything is generated from the game's SDK dump. Nothing is guessed from a name: a class is a
@@ -73,25 +73,33 @@ Per-hero notifies are named for their hero's numeric ID, not the hero's name —
 `AnimNotify_PlayNiagaraEffectEx_105461` is in module `Hero_1054`. If you know the hero ID from
 the pak paths, searching that number narrows the list fast.
 
-### If you install the real KawaiiPhysics plugin
+### The Kawaii Physics notifies
 
-Two modules with the same name cannot coexist, so this pack's stub has to go. Remove it from
-**three** places — the prebuilt binaries mean deleting the source alone is not enough:
+The game's two Kawaii Physics notifies live in the `KawaiiPhysics` module, which belongs to a
+plugin rather than to the game. This pack does **not** stub them. It declares a dependency on
+[KawaiiPhysicsRivals](https://github.com/XzantGaming/KawaiiPhysicsRivals) instead, which
+provides that module for real — same two classes, same three properties, same order.
 
-1. `Source/KawaiiPhysics/`
-2. the `KawaiiPhysics` entry in `MarvelRivalsAnimNotifies.uplugin`
-3. the `"KawaiiPhysics"` line in `Binaries/Win64/UnrealEditor.modules`, **and**
-   `Binaries/Win64/UnrealEditor-KawaiiPhysics.dll`
+Install both plugins into `Plugins/` and everything resolves on its own.
 
-Miss step 3 and the other plugin's editor module fails to load with
-`GetLastError=127` (`ERROR_PROC_NOT_FOUND`): its imports bind to whichever
-`UnrealEditor-KawaiiPhysics.dll` Windows finds first, and this pack's stub does not export
-what it needs.
+If `KawaiiPhysics` is missing, the editor says so plainly on startup:
 
-Nothing is lost. A real KawaiiPhysics plugin declares
-`UAnimNotify_KawaiiPhysicsAddExternalForce` and
-`UAnimNotifyState_KawaiiPhysicsAddExternalForce` itself, with the same three properties in
-the same order — so montages authored against this stub keep working.
+```
+This project requires the 'KawaiiPhysics' plugin. Install it and try again,
+or remove it from the project's required plugin list.
+```
+
+**Why a dependency rather than a stub.** Only one module named `KawaiiPhysics` can exist in a
+project — the name is the `/Script/` package path the game's assets reference, so neither side
+can rename. An earlier version of this pack shipped its own 2-class stub, which collided with
+the real plugin and made its editor module fail to load with `GetLastError=127`
+(`ERROR_PROC_NOT_FOUND`): the imports bound to whichever `UnrealEditor-KawaiiPhysics.dll`
+Windows found first. Declaring the dependency removes the collision instead of documenting a
+workaround for it.
+
+If you truly want notifies without the physics plugin, delete the `KawaiiPhysics` entry from
+the `Plugins` array in `MarvelRivalsAnimNotifies.uplugin`. Those two notifies then will not
+exist in your editor.
 
 ---
 
