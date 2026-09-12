@@ -1,7 +1,7 @@
 {
     "FileVersion": 3,
-    "Version": 1,
-    "VersionName": "1.0.0",
+    "Version": 2,
+    "VersionName": "1.0.1",
     "FriendlyName": "Marvel Rivals Anim Notifies",
     "Description": "Compilable stubs for every Marvel Rivals anim notify, so montages authored in a stock UE 5.3.2 editor resolve against the game's own classes.",
     "Category": "Animation",

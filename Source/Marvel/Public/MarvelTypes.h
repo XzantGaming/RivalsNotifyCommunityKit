@@ -418,7 +418,7 @@ struct FAbilityAudioIdComboParam
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float ComboDuration;
+	float ComboDuration = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
 	TArray<int32> ComboAudioID;
 };
@@ -433,7 +433,7 @@ struct FAccessoryMaterialCurveParam
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
 	TObjectPtr<UCurveBase> Curve;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	bool bRecoverDefaultValue;
+	bool bRecoverDefaultValue = false;
 };
 
 USTRUCT(BlueprintType)
@@ -453,7 +453,7 @@ struct FAnimNotifyFXParameterConfig
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bUseCustomParameters;
+	bool bUseCustomParameters = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TMap<FName,bool> BoolUserParameterValues;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
@@ -479,15 +479,15 @@ struct FMaterialQuery
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	EMaterialQueryType QueryType;
+	EMaterialQueryType QueryType = EMaterialQueryType::QueryBySlotIndex;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	int32 SlotIndex;
+	int32 SlotIndex = 0;
 	UPROPERTY(EditAnywhere, Category = "Notify")
 	FName SlotName;
 	UPROPERTY(EditAnywhere, Category = "Notify")
 	FMaterialTag SlotTag;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bIndex2TagCompatibleCode;
+	bool bIndex2TagCompatibleCode = false;
 };
 
 USTRUCT(BlueprintType)
@@ -498,7 +498,7 @@ struct FAnimationMaterialCurveParam
 	UPROPERTY(EditAnywhere, Category = "Notify")
 	FName MeshName;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	int32 MaterialSlot;
+	int32 MaterialSlot = 0;
 	UPROPERTY(EditAnywhere, Category = "Notify")
 	FMaterialQuery MaterialQuery;
 	UPROPERTY(EditAnywhere, Category = "Notify")
@@ -506,11 +506,11 @@ struct FAnimationMaterialCurveParam
 	UPROPERTY(EditAnywhere, Category = "Notify")
 	TObjectPtr<UCurveBase> Curve;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bRecoverToCustomValue;
+	bool bRecoverToCustomValue = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float CustomValue;
+	float CustomValue = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bRecoverDefaultValue;
+	bool bRecoverDefaultValue = false;
 };
 
 USTRUCT(BlueprintType)
@@ -521,15 +521,15 @@ struct FChaosDesActorParam
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TObjectPtr<AActor> Actor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bUseActorPosition;
+	bool bUseActorPosition = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bUseNearlyPosition;
+	bool bUseNearlyPosition = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TObjectPtr<UNiagaraSystem> ActorEndEffect;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float DelayTime;
+	float DelayTime = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bIsUseCombine;
+	bool bIsUseCombine = false;
 };
 
 USTRUCT(BlueprintType)
@@ -540,19 +540,19 @@ struct FChaosDesEffectParam
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FString ParamName;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	EChaosDesEffectParamType ParamType;
+	EChaosDesEffectParamType ParamType = EChaosDesEffectParamType::Actor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FChaosDesActorParam ActorInfo;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool BoolParam;
+	bool BoolParam = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	int32 IntParam;
+	int32 IntParam = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float FloatParam;
+	float FloatParam = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	FLinearColor ColorParam;
+	FLinearColor ColorParam = FLinearColor(ForceInitToZero);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	FVector VectorParam;
+	FVector VectorParam = FVector::ZeroVector;
 };
 
 USTRUCT(BlueprintType)
@@ -565,7 +565,7 @@ struct FMarvelGameplayTagRequirements
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FGameplayTagContainer IgnoreTags;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bUseTagQuery;
+	bool bUseTagQuery = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FGameplayTagQuery TagQuery;
 };
@@ -576,7 +576,7 @@ struct FDashAbilityInfo
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float DashDuration;
+	float DashDuration = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TObjectPtr<UCurveFloat> SpeedCurve;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
@@ -592,53 +592,53 @@ struct FDashAbilityInfo
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TObjectPtr<UCurveFloat> TargetLerpSpeedVertical;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bRestrictSpeedToExpected;
+	bool bRestrictSpeedToExpected = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float MaxSpeed;
+	float MaxSpeed = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float NoSmoothCorrectionDistance;
+	float NoSmoothCorrectionDistance = 0.f;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Notify")
-	TEnumAsByte<EMovementMode> DashMovementMode;
+	TEnumAsByte<EMovementMode> DashMovementMode = MOVE_None;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	EDashDirectionType DashDirectionType;
+	EDashDirectionType DashDirectionType = EDashDirectionType::CrossHair;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FName TargetActorSocket;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	FVector TargetActorOffset;
+	FVector TargetActorOffset = FVector::ZeroVector;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bOffsetIncludeTargetCapsuleRadius;
+	bool bOffsetIncludeTargetCapsuleRadius = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bStopDashWhenTargetBePortal;
+	bool bStopDashWhenTargetBePortal = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bRestrictTargetActorTypeAutonomousUpdate;
+	bool bRestrictTargetActorTypeAutonomousUpdate = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bTransformTargetLocationWhenTargetBePortal;
+	bool bTransformTargetLocationWhenTargetBePortal = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bTickUpdateDirToCrossHair;
+	bool bTickUpdateDirToCrossHair = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bTickUpdateInverseDir;
+	bool bTickUpdateInverseDir = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bClampCrossHairPitch;
+	bool bClampCrossHairPitch = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float MinCrossHairPitch;
+	float MinCrossHairPitch = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float MaxCrossHairPitch;
+	float MaxCrossHairPitch = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bUseControllerDirection;
+	bool bUseControllerDirection = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	EDashFinishVelocityMode DashFinishVelocityMode;
+	EDashFinishVelocityMode DashFinishVelocityMode = EDashFinishVelocityMode::Zeroing;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	FVector DefaultDirection;
+	FVector DefaultDirection = FVector::ZeroVector;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool StopOnArrive;
+	bool StopOnArrive = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float StopDistance;
+	float StopDistance = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bIgnoreCharacterExceptTarget;
+	bool bIgnoreCharacterExceptTarget = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bProjected;
+	bool bProjected = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bServerRespectRemoteCancelData;
+	bool bServerRespectRemoteCancelData = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FMarvelGameplayTagRequirements CollisionTargetTagRequirements;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
@@ -646,15 +646,15 @@ struct FDashAbilityInfo
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FGameplayTagContainer CancelAbilityTags;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bUseForceStopDashTag;
+	bool bUseForceStopDashTag = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bForceBindActorHit_ThreadSafe;
+	bool bForceBindActorHit_ThreadSafe = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bForceStopWithTimeout;
+	bool bForceStopWithTimeout = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bForceServerMoveImmediateUpdate;
+	bool bForceServerMoveImmediateUpdate = false;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bForbidPredictingClientMoveBackWhenCollided;
+	bool bForbidPredictingClientMoveBackWhenCollided = false;
 };
 
 USTRUCT(BlueprintType)
@@ -663,9 +663,9 @@ struct FFluxKinematicBuoyancyPontoonOverride
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float Radius;
+	float Radius = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	FVector Offset;
+	FVector Offset = FVector::ZeroVector;
 };
 
 USTRUCT(BlueprintType)
@@ -683,21 +683,21 @@ struct FLerpCameraSpringArmLengthBodySizeStageCameraExternalScales
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float StageMinus3;
+	float StageMinus3 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float StageMinus2;
+	float StageMinus2 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float StageMinus1;
+	float StageMinus1 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float Stage0;
+	float Stage0 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float Stage1;
+	float Stage1 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float Stage2;
+	float Stage2 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float Stage3;
+	float Stage3 = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	float Stage4;
+	float Stage4 = 0.f;
 };
 
 USTRUCT(BlueprintType)
@@ -708,11 +708,11 @@ struct FMaterialParameterFloatTransition
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FName ParameterName;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	EMaterialParameterValueSource ValueSource;
+	EMaterialParameterValueSource ValueSource = EMaterialParameterValueSource::RangeValues;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	FVector2f RangeValues;
+	FVector2f RangeValues = FVector2f::ZeroVector;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bUseAbsoluteTime;
+	bool bUseAbsoluteTime = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TSoftObjectPtr<UCurveFloat> ExternalCurve;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
@@ -727,7 +727,7 @@ struct FMaterialParameterFloatValue
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FName ParameterName;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float Value;
+	float Value = 0.f;
 };
 
 USTRUCT(BlueprintType)
@@ -736,11 +736,11 @@ struct FRecoveryCostConfig
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	EAmmoClipType CostType;
+	EAmmoClipType CostType = EAmmoClipType::NONE;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	bool bRecoveryMaxCost;
+	bool bRecoveryMaxCost = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float RecoveryValue;
+	float RecoveryValue = 0.f;
 };
 
 USTRUCT(BlueprintType)
@@ -749,9 +749,9 @@ struct FRefreshCooldownParams
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	int32 AbilityID;
+	int32 AbilityID = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	ERefreshCooldownType RefreshType;
+	ERefreshCooldownType RefreshType = ERefreshCooldownType::Reset;
 };
 
 USTRUCT(BlueprintType)
@@ -760,7 +760,7 @@ struct FReplaceMaterialInfo
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
-	int32 ElementIndex;
+	int32 ElementIndex = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
 	FMaterialQuery Query;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Notify")
@@ -818,25 +818,25 @@ struct FUpperBodyBlendSwitch
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenMoving;
+	bool UseUpperWhenMoving = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenStopping;
+	bool UseUpperWhenStopping = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenJumping;
+	bool UseUpperWhenJumping = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenLanding;
+	bool UseUpperWhenLanding = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenLandingAlready;
+	bool UseUpperWhenLandingAlready = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenIdling;
+	bool UseUpperWhenIdling = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenTurningInPlace;
+	bool UseUpperWhenTurningInPlace = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenStopOverIdling;
+	bool UseUpperWhenStopOverIdling = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenLandOverIdling;
+	bool UseUpperWhenLandOverIdling = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool UseUpperWhenFlyIdling;
+	bool UseUpperWhenFlyIdling = false;
 };
 
 USTRUCT(BlueprintType)
@@ -845,25 +845,25 @@ struct FUpperLayeredBlendConfig
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float Spine_Alpha;
+	float Spine_Alpha = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
 	TArray<float> Extern_Spine_Alpha;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float Clavicle_L_Alpha;
+	float Clavicle_L_Alpha = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float Clavicle_R_Alpha;
+	float Clavicle_R_Alpha = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bUseSpecialAlphaWhenMoving;
+	bool bUseSpecialAlphaWhenMoving = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float Spine_Alpha_Moving;
+	float Spine_Alpha_Moving = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float Clavicle_L_Alpha_Moving;
+	float Clavicle_L_Alpha_Moving = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	float Clavicle_R_Alpha_Moving;
+	float Clavicle_R_Alpha_Moving = 0.f;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bSpineMeshSpaceRotationBlend;
+	bool bSpineMeshSpaceRotationBlend = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bClavicleMeshSpaceRotationBlend;
+	bool bClavicleMeshSpaceRotationBlend = false;
 	UPROPERTY(EditAnywhere, Category = "Notify")
-	bool bClavicleMeshSpaceRotationBlend_L;
+	bool bClavicleMeshSpaceRotationBlend_L = false;
 };

@@ -42,11 +42,11 @@ struct FMeshMaterialUpdateInfo
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float DefaultValue;
+	float DefaultValue = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	TObjectPtr<UCurveFloat> Curve;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
 	FGameplayTagContainer PauseStatus;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Notify")
-	float ReplaceTime;
+	float ReplaceTime = 0.f;
 };
